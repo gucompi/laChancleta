@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should render correctly in "debug" mode 1`] = `ShallowWrapper {}`;
+
+exports[`should be possible to activate button with Spacebar 1`] = `ReactWrapper {}`;

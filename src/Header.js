@@ -1,7 +1,10 @@
 import React from 'react';
 import './App.css';
 import {  Link } from "react-router-dom";
-
+import Dropdown from 'react-bootstrap/Dropdown'
+import Toggle from 'react-bootstrap/DropdownToggle'
+import Menu from 'react-bootstrap/DropdownMenu'
+import Item from 'react-bootstrap/Dropdown'
 class Header extends React.Component {
   render(){
     return (
@@ -10,19 +13,30 @@ class Header extends React.Component {
           <nav>
             <nav className="navbar navbar-expand-lg navbar-light bg-light menu">
               <a className="navbar-brand" href="abmstock.html">Amankay</a>
+              <Dropdown>
+                <Toggle variant="success" id="dropdown-basic">
+                  Dropdown Button
+                </Toggle>
+
+                <Menu>
+                  <Item href="#/action-1">Action</Item>
+                  <Item href="#/action-2">Another action</Item>
+                  <Item href="#/action-3">Something else</Item>
+                </Menu>
+              </Dropdown>
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon" />
               </button>
               <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                  <Link to="/form">ABM Producto</Link>
+                  <Link  to="/form">ABM Producto</Link>
                   </li>
                   <li className="nav-item">
                     <Link to="/stock">Modificar Stock</Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="abmstock.html">Facturación</a>
+                    <a className="nav-link" href="abmstock.html">Facturacion</a>
                   </li>
                 </ul>
               </div>
