@@ -4,18 +4,18 @@ import Buscador from './Buscador';
 import FormItem from './FormItem';
 import Boton from './Boton';
 
-class StockComponent extends React.Component {
+class AlterPrecios extends React.Component {
   render(){
     return (
       <React.Fragment>
+        <h1><center>ALTER PRECIOS</center></h1>
         <div>
         <Buscador></Buscador>
         </div>
         <hr/>
         <div className="asideform formulario">
           <form>
-          <FormItem></FormItem>
-      
+           <FormItem label="Temporada"></FormItem>
           </form>
         </div>
         <hr/>
@@ -30,4 +30,4 @@ class StockComponent extends React.Component {
   }
 }
 
-export default StockComponent;
+export default AlterPrecios;
