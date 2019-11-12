@@ -3,21 +3,47 @@ import './App.css';
 import Buscador from './Buscador';
 import FormItem from './FormItem';
 import Boton from './Boton';
+import {addProduct,deleteProduct} from './actions/productActions'
+import { connect } from 'react-redux'
 
 class AbmProducto extends React.Component {
  constructor(props){
    super(props);
    this.state= {
-     products:[]
+     nombre:"",
+     categoria:""
    }
  }
- componentDidMount(){
-   fetch("http://localhost:8080/stock/products").then((res)=>{
-     return res.json();
-   }).then((data)=>{
-     this.setState({products:data})
-   })
- }
+
+ 
+onChange2 = name => event => {
+  let value_ = name === 'image'
+  ? event.target.files[0]
+  : event.target.value
+
+  this.setState({[name]: value_ })
+
+}
+
+deleteProd=(id)=>{
+  this.props.dispatch(deleteProduct(id));
+}
+
+submitForm =()=>{
+  fetch("http://localhost:8080/stock/product",{
+    method: 'POST',
+    body:JSON.stringify(this.state),
+    headers:{
+      'Content-Type': 'application/json'
+    }
+   }).then((res)=>{
+    return res.json();
+  }).then((data)=>{
+    console.log(data)
+    this.props.dispatch(addProduct(data)) 
+  
+  })
+}
 
   render(){
     return (
@@ -28,22 +54,17 @@ class AbmProducto extends React.Component {
         </div>
         <hr/>
         <div className="asideform formulario">
-          <form>
-          {/*<FormItem label="Categoria"></FormItem>
-          <FormItem label="Nombre Producto"></FormItem>
-          <FormItem label="Precio"></FormItem>
-          <FormItem label="Precio Oferta"></FormItem>
-          <FormItem label="Stock Inicial"></FormItem>
-          <FormItem label="Descripcion"></FormItem>
-          <FormItem label="Categoria"></FormItem>
-    */}
+          <form onSubmit={(e)=>{e.preventDefault()}}> 
+            nombre:      <input type="text"  onChange={this.onChange2('nombre')} placeholder="nombre"/> <br/>
+            categoria:      <input type="text"  onChange={this.onChange2('categoria')} placeholder="categoria"/>
 
+<input type="submit" onClick={()=>{this.submitForm()}}></input>
           </form>
 
           <ul>
-            {this.state.products.map((product)=>{
+            {this.props.products.map((product)=>{
               return (
-                <li key={product._id}>
+                <li onClick={()=>{this.deleteProd(product._id)}} key={product._id}>
                   {product.nombre}
                 </li>
             
@@ -63,4 +84,9 @@ class AbmProducto extends React.Component {
   }
 }
 
-export default AbmProducto;
+const mapStateToProps = (state) => {
+  return {
+    products:state
+  }
+}
+export default connect(mapStateToProps)(AbmProducto);
