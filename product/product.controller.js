@@ -1,8 +1,9 @@
 const Product = require("./product.model")
-
+const Sku = require('../sku/sku.model')
 const getProducts = (req,res)=>{
+Sku.create({estado:"normal"})
     Product
-    .find({}).then((products)=>{res.json(products).status(204)})
+    .find({}).populate('skuss').then((products)=>{res.json(products).status(204)})
 }
 const getProduct = (req,res)=>{
     Product

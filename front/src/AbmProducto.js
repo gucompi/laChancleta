@@ -3,7 +3,7 @@ import './App.css';
 import Buscador from './Buscador';
 import FormItem from './FormItem';
 import Boton from './Boton';
-import {addProduct,deleteProduct} from './actions/productActions'
+import {addProduct,getProducts} from './actions/productActions'
 import { connect } from 'react-redux'
 
 class AbmProducto extends React.Component {
@@ -25,11 +25,9 @@ onChange2 = name => event => {
 
 }
 
-deleteProd=(id)=>{
-  this.props.dispatch(deleteProduct(id));
-}
 
 submitForm =()=>{
+  /*
   fetch("http://localhost:8080/stock/product",{
     method: 'POST',
     body:JSON.stringify(this.state),
@@ -43,9 +41,18 @@ submitForm =()=>{
     this.props.dispatch(addProduct(data)) 
   
   })
+  */
+}
+
+componentDidMount(){
+  console.log("this")
+  console.log(this)
+  this.props.getProducts()
 }
 
   render(){
+    console.log("this.props2222")
+    console.log(this.props)
     return (
       <React.Fragment>
         <h1><center>ABM PRODUCTO</center></h1>
@@ -62,9 +69,9 @@ submitForm =()=>{
           </form>
 
           <ul>
-            {this.props.products.map((product)=>{
+            {this.props.products &&   this.props.products.filter((prod)=>{return prod.nombre && ( prod.nombre.indexOf(this.props.buscador)!=-1)}).map((product)=>{
               return (
-                <li onClick={()=>{this.deleteProd(product._id)}} key={product._id}>
+                <li  key={product._id}>
                   {product.nombre}
                 </li>
             
@@ -85,8 +92,11 @@ submitForm =()=>{
 }
 
 const mapStateToProps = (state) => {
+  console.log("state2")
+  console.log(state)
   return {
-    products:state
+    products:state.productReducer,
+    buscador:state.buscadorReducer
   }
 }
-export default connect(mapStateToProps)(AbmProducto);
+export default connect(mapStateToProps, {getProducts})(AbmProducto);
