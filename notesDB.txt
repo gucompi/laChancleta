@@ -1,0 +1,77 @@
+1-1
+
+const mongoose = require("mongoose");
+const productSchema =new mongoose.Schema({
+    nombre:String,
+    categoria:String,
+    sku:{type: mongoose.Schema.Types.ObjectId, ref: 'Sku'},
+})
+module.exports = mongoose.model('product',productSchema)
+
+
+const mongoose = require("mongoose");
+const Product = mongoose.model('product');
+const skuSchema =new mongoose.Schema({
+    estado:String,
+    
+    
+})
+module.exports = mongoose.model('Sku',skuSchema)
+
+
+a) Importante que en la base el atributo no sea un ARRAY!!!
+
+Por ejemplo:
+{"_id":{"$oid":"5dba1a9e1c9d44000063deac"},"nombre":"Patin","sku":"5dcf4a74fd8aaa10f4fa8747"}
+
+ Product.find({}).populate('sku').then((products)=>{res.json(products).status(204)})
+
+
+
+1-n
+const mongoose = require("mongoose");
+const Product = mongoose.model('product');
+const skuSchema =new mongoose.Schema({
+    estado:String,
+    
+    
+})
+module.exports = mongoose.model('Sku',skuSchema)
+
+const mongoose = require("mongoose");
+const productSchema =new mongoose.Schema({
+    nombre:String,
+    categoria:String,
+    skus:[{type: mongoose.Schema.Types.ObjectId, ref: 'Sku'}],
+})
+module.exports = mongoose.model('product',productSchema)
+ 
+Product.find({}).populate('skus').then((products)=>{res.json(products).status(204)})
+
+{"skus":[{"_id":"5dd571f5497e451df84a38d2","estado":"normal","__v":0}],"_id":"5dba1a201c9d44000063deaa","nombre":"Sky","categoria":"skies"}
+
+
+
+1-Infinito
+
+const mongoose = require("mongoose");
+const Product = mongoose.model('product');
+const skuSchema =new mongoose.Schema({
+    estado:String,
+    product:[{type: mongoose.Schema.Types.ObjectId, ref: 'product'}]
+})
+module.exports = mongoose.model('Sku',skuSchema)
+
+const mongoose = require("mongoose");
+const productSchema =new mongoose.Schema({
+    nombre:String,
+    categoria:String,
+    
+})
+module.exports = mongoose.model('product',productSchema)
+
+Sku.find({}).populate('product').then((products)=>{res.json(products).status(204)})
+
+
+{"product":[{"_id":"5dc357d87764f55abc2b8514","__v":0}],"_id":"5dcf4a202606462a34c3c937","__v":0}
+
