@@ -75,3 +75,7 @@ Sku.find({}).populate('product').then((products)=>{res.json(products).status(204
 
 {"product":[{"_id":"5dc357d87764f55abc2b8514","__v":0}],"_id":"5dcf4a202606462a34c3c937","__v":0}
 
+
+
+
+
