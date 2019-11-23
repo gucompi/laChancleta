@@ -5,7 +5,7 @@ import FormItem from './FormItem';
 import Boton from './Boton';
 import {addProduct,getProducts} from './actions/productActions'
 import { connect } from 'react-redux'
-
+import urlImages from './constants'
 class AbmProducto extends React.Component {
  constructor(props){
    super(props);
@@ -73,7 +73,7 @@ componentDidMount(){
               return (
                 <li  key={product._id}>
                   {product.nombre}
-                  {product.url  && <img src={`http://localhost:8080/product/image/${product.url}`}></img>}
+                  {product.url  && <img src={`${urlImages.urlImages}/product/image/${product.url}`}></img>}
                 </li>
             
               )
