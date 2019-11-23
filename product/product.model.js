@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const productSchema =new mongoose.Schema({
     nombre:String,
     categoria:String,
-    skus:[{type: mongoose.Schema.Types.ObjectId, ref: 'Sku'}],
+    url:String
+    
 })
 module.exports = mongoose.model('product',productSchema)

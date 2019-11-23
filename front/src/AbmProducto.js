@@ -73,6 +73,7 @@ componentDidMount(){
               return (
                 <li  key={product._id}>
                   {product.nombre}
+                  {product.url  && <img src={`http://localhost:8080/product/image/${product.url}`}></img>}
                 </li>
             
               )
