@@ -26,6 +26,9 @@ class HeaderFront extends React.Component {
                     <Link to="/back/alterPrecios">Alter Precios</Link>
                   </li>
                   <li className="nav-item">
+                    <Link to="/front/login">LOGIN</Link>
+                  </li>
+                  <li className="nav-item">
                     <Link to="/back">BACK</Link>
                   </li>
                 </ul>

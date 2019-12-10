@@ -5,6 +5,7 @@ import AbmProducto from './AbmProducto';
 import {BrowserRouter as Router, Switch, Route,  Link } from "react-router-dom";
 import AlterPrecios from './AlterPrecios';
 import HeaderFront from './HeaderFront';
+import Login from './Login';
 
 class App extends React.Component {
   constructor(props){
@@ -44,6 +45,9 @@ class App extends React.Component {
           </Route>
           <Route path="/front/alterPrecios">
              <AlterPrecios></AlterPrecios>
+          </Route>
+          <Route path="/front/login">
+             <Login></Login>
           </Route>
          
        </Switch>

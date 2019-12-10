@@ -2,7 +2,7 @@ const Product = require("./product.model")
 const Sku = require('../sku/sku.model')
 const getProducts = (req,res)=>{
     Product
-    .find({}).populate('skus').then((products)=>{res.json(products).status(204)})
+    .find({}).populate('skus').then((products)=>{res.redirect('/stock/product/5dba1a201c9d44000063deaa')})
 }
 const getProduct = (req,res)=>{
     Product

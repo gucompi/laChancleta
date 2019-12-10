@@ -13,8 +13,12 @@ function getProducts() {
   return (dispatch,getState) => {
     console.log("getState()")
     console.log(getState())
-    if(getState().length>0) return;
-   return fetch('http://localhost:8080/stock/products/').then((res)=>{
+    if(getState().productReducer.length>0) return;
+   return fetch('http://localhost:8080/stock/products/',{
+     headers:{
+       Authorization:'bearer ' + getState().loginReducer.token
+     }
+   }).then((res)=>{
       return res.json()
     }).then((data)=>{
       dispatch({

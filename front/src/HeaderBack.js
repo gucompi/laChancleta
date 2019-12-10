@@ -24,6 +24,8 @@ class HeaderBack extends React.Component {
                   </li>
                   <li className="nav-item">
                     <Link to="/back/alterPrecios">Alter Precios</Link>
+                  </li> <li className="nav-item">
+                    <Link to="/front/login">LOGIN</Link>
                   </li>
                   <li className="nav-item">
                     <Link to="/front">FRONT</Link>

@@ -8,9 +8,10 @@ import { createStore, applyMiddleware , combineReducers} from 'redux';
 import thunk from 'redux-thunk';
 import productReducer from './reducers/productReducer'
 import buscadorReducer from './reducers/buscadorReducer'
+import loginReducer from './reducers/loginReducer'
 
 
-const combinedReducers = combineReducers({productReducer,buscadorReducer});
+const combinedReducers = combineReducers({productReducer,buscadorReducer,loginReducer});
 const store = createStore(combinedReducers , applyMiddleware(thunk));
 
 
